@@ -23,7 +23,16 @@ if ( sizeof($request_array['events']) > 0 )
 		$text = $event['message']['text'];
 		
 	   	if($text == "ชื่อ" || $text == "ชื่ออะไร" || $text == "ชื่ออะไรครับ"|| $text == "ชื่ออะไรคะ"){
-			$reply_message = 'ชื่อของฉันคือ BOTCAT';
+			$url = 'https://covid19.th-stat.com/api/open/today';
+			$ch = curl_init($url);
+			$reply_message = file_get_contents($url);   // Get request content
+		   
+		   $request_array = json_decode($request, true);   // Decode JSON to Array
+		   
+		   $result = file_get_contents($url);		   
+		   $obj = json_decode($result);
+		   $reply_message = 'มีส่งงาน '. $obj->{'Confirmed'} .' คน ได้แก่...';
+			
 		}
 	   
 	   	if($text == "สถานการณ์โควิดวันนี้" || $text == "covid19" || $text == "covid-19" || $text == "Covid-19"){
