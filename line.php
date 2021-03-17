@@ -35,7 +35,7 @@ if ( sizeof($request_array['events']) > 0 )
 		   
 		   $result = file_get_contents($url);		   
 		   $obj = json_decode($result);
-		   $reply_message = 'มีส่งงาน '. $obj->{'Confirmed'} .' คน ได้แก่...';
+		   $reply_message = 'มีผู้ป่วยสะสม '. $obj->{'Confirmed'} .' คน <br> มีผู้เสียชีวิต'. $obj->{'Deaths'} . .' คน <br> มีผู้รักษาหาย'. $obj->{'Recovered'}.' คน' ;
 	        }	
 	   
 	   if($text =="@บอท ขอรหัสนิสิตของผู้พัฒนา ส่งไปที่ https://linebot.kantit.com/stuid.php"){
